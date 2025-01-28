@@ -17,6 +17,7 @@ async function bootstrap() {
     })
   );
 
+  console.log('Testeando en google cloud');
 
   await app.listen(envs.port);
   logger.log(`Server running on port ${envs.port}`);
