@@ -1,0 +1,45 @@
+
+#Dependencias
+FROM node:21-alpine3.19 as deps
+
+WORKDIR /usr/src/app
+
+COPY package.json ./
+COPY package-lock.json ./
+
+RUN npm install --legacy-peer-deps
+
+# Builder - construye la aplicación.
+FROM node:21-alpine3.19 as build
+
+WORKDIR /usr/src/app
+
+COPY --from=deps /usr/src/app/node_modules ./node_modules
+
+#copiar código fuente
+COPY . .
+
+#RUN npm run test. Si falla no se contruye
+RUN npm run build
+
+#Borro modules que no son de producción
+#RUN npm ci -f --only=production && npm cache clean --force
+
+# Creación imagen final
+FROM node:21-alpine3.19 as prod
+
+WORKDIR /usr/src/app
+
+COPY --from=build /usr/src/app/node_modules ./node_modules
+#Copiar carpeta de distribución
+COPY --from=build /usr/src/app/dist ./dist
+COPY --from=build /usr/src/app/static ./static
+
+
+USER node
+
+
+EXPOSE 3000
+
+
+CMD ["node","dist/main.js"]

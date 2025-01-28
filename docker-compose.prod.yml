@@ -1,0 +1,20 @@
+version: '3'
+
+services:  
+  tesloshop:
+    build: 
+      context: .
+      dockerfile: dockerfile.prod
+    image: tesloshop:0.0.1
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      - PORT=${PORT}
+      - DATABASE_URL=${TESLO_DATABASE_URL}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
+      - ENTORNO=${ENTORNO}
+      - HOST_API=${HOST_API}
+      - SECRET_JWT=${SECRET_JWT}

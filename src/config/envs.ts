@@ -2,7 +2,7 @@
 
 import 'dotenv/config';
 import * as joi from 'joi';
-import { hostname } from 'os';
+
 
 interface EnvVars {
     PORT: number;
@@ -10,7 +10,7 @@ interface EnvVars {
     DB_PASSWORD: string;
     DB_NAME: string;
     DB_HOST: string;
-    DB_PORT: number;
+   // DB_PORT: number;
     ENTORNO: string;
     HOST_API: string;
     SECRET_JWT: string;
@@ -22,13 +22,14 @@ const envsSchema = joi.object({
     DB_PASSWORD: joi.string().required(),
     DB_NAME: joi.string().required(),
     DB_HOST: joi.string().required(),
-    DB_PORT: joi.number().required(),
+   // DB_PORT: joi.number().required(),
     ENTORNO: joi.string().required(),
     HOST_API: joi.string().required(),
     SECRET_JWT: joi.string().required(),
     
 })
 .unknown( true );
+
 
 const { error, value } = envsSchema.validate( process.env );
 
@@ -44,7 +45,7 @@ export const envs = {
     dbPassword: envVars.DB_PASSWORD,
     dbName: envVars.DB_NAME,
     dbHost: envVars.DB_HOST,
-    dePort: envVars.DB_PORT,
+   // dePort: envVars.DB_PORT,
     deEntorno: envVars.ENTORNO,
     hostApi: envVars.HOST_API,
     secretJwt: envVars.SECRET_JWT,

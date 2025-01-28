@@ -17,12 +17,13 @@ import { AuthModule } from './auth/auth.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: envs.dbHost,
-      port: envs.dePort,
+     // port: envs.dePort,
       username: envs.dbUser,
       password: envs.dbPassword,
       database: envs.dbName,
+      ssl: true,
       autoLoadEntities: true,
-      synchronize: envs.deEntorno === 'PRODUCCION' ? false : true,
+      synchronize: envs.deEntorno === 'PRODUCCION' ? true : true,
     }),
 
     ServeStaticModule.forRoot({
