@@ -1,0 +1,18 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "europe-southwest1-docker.pkg.dev/tienda-jucarlos/miregistro/tesloshop:0.0.1",
+        "-f",
+        "dockerfile.prod",
+        "--platform=linux/amd64",
+        ".",
+      ]
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "europe-southwest1-docker.pkg.dev/tienda-jucarlos/miregistro/tesloshop:0.0.1",
+      ]
