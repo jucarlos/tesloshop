@@ -16,3 +16,5 @@ steps:
         "push",
         "europe-southwest1-docker.pkg.dev/tienda-jucarlos/miregistro/tesloshop:0.0.1",
       ]
+options:
+  logging: CLOUD_LOGGING_ONLY
