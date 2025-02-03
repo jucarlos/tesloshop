@@ -3,6 +3,7 @@
 /node_modules
 /build
 /postgres
+/k8s
 
 # Logs
 logs
