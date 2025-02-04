@@ -22,9 +22,9 @@ import { HealthCheckModule } from './health-check/health-check.module';
       username: envs.dbUser,
       password: envs.dbPassword,
       database: envs.dbName,
-      ssl: true,
+      ssl: envs.deEntorno === 'PRODUCCION' ? true : false,
       autoLoadEntities: true,
-      synchronize: envs.deEntorno === 'PRODUCCION' ? true : true,
+      synchronize: envs.deEntorno === 'PRODUCCION' ? false : true,
     }),
 
     ServeStaticModule.forRoot({
