@@ -10,7 +10,6 @@ import { User } from '../auth/entities/user.entity';
 import { Auth, GetUser } from '../auth/decorators';
 
 @Controller('products')
-@Auth()
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
