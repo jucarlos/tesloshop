@@ -16,13 +16,15 @@ export class UserRoleGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
 
+   
+
     const validRoles: string[] = this.reflector.get(META_ROLES, context.getHandler());
 
     if ( !validRoles ) {
       return true;  // cualquier persona puede entrar 
     }
 
-    if ( validRoles.length === 0 )return true; // puede pasar cualquiera
+      if ( validRoles.length === 0 )return true; // puede pasar cualquiera
 
     const req = context.switchToHttp().getRequest();
     const user = req.user as User;
